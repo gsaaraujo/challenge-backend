@@ -88,8 +88,8 @@
             t()
         }([])
     </script>
-    <script src="/static/js/2.7d04d8d0.chunk.js"></script>
-    <script src="/static/js/main.92b55018.chunk.js"></script>
+    <script src="/static/js/2.e4dd41a8.chunk.js"></script>
+    <script src="/static/js/main.1ba4a252.chunk.js"></script>
 </body>
 
 </html>
