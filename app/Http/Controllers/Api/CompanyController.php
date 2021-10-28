@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\Company as Company;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\Company as CompanyResource;
+
 
 class CompanyController extends Controller
 {
-    public function store(Request $request)
+    public function create(Request $request)
     {
         $company = Company::create([
             "name" => $request->input("name"),
@@ -18,18 +20,9 @@ class CompanyController extends Controller
         return $company;
     }
 
-    public function show($id)
+    public function read()
     {
-        //
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
+        $company = Company::paginate(10);
+        return CompanyResource::collection($company);
     }
 }

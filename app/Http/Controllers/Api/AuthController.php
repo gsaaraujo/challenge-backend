@@ -9,7 +9,7 @@ use App\Http\Resources\Auth as AuthResource;
 
 class AuthController extends Controller
 {
-	public function show(Request $request)
+	public function create(Request $request)
 	{
 		try {
 			$user = Auth::where('user', $request->user)->first();
