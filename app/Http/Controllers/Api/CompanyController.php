@@ -23,6 +23,28 @@ class CompanyController extends Controller
     public function read()
     {
         $company = Company::paginate(10);
+
         return CompanyResource::collection($company);
+    }
+
+    public function update(Request $request)
+    {
+        $company = Company::where('name', '=', $request->dataName)->first();
+
+        $company->name = $request->input('name');
+        $company->cnpj = $request->input('cnpj');
+
+        if ($company) {
+            $company->save();
+        }
+    }
+
+    public function delete($dataName)
+    {
+        $company = Company::where('name', '=', $dataName)->first();
+
+        if ($company) {
+            $company->delete();
+        }
     }
 }
