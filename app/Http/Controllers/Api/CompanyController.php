@@ -37,10 +37,16 @@ class CompanyController extends Controller
 
     public function update(Request $request)
     {
-        // if ($name || $cnpj) {
-        //     return response('data_already_exists', 403)
-        //         ->header('Content-Type', 'text/plain');
-        // }
+        $name = Company::where('id', '!=', $request->id)
+            ->where('name', '=', $request->name)->first();
+
+        $cnpj = Company::where('id', '!=', $request->id)
+            ->where('cnpj', '=', $request->cnpj)->first();
+
+        if ($name || $cnpj) {
+            return response('data_already_exists', 403)
+                ->header('Content-Type', 'text/plain');
+        }
 
         $company = Company::findOrFail($request->id);
 
