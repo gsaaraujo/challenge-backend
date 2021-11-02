@@ -12,10 +12,10 @@ class AuthController extends Controller
 	public function create(Request $request)
 	{
 		try {
-			$user = Auth::where('user', $request->user)->first();
-			$password = Auth::where('password', $request->password)->first();
+			$userLogin = Auth::where('userLogin', $request->userLogin)->first();
+			$userPassword = Auth::where('userPassword', $request->userPassword)->first();
 
-			if ($user && $password) {
+			if ($userLogin && $userPassword) {
 				return response('access_permitted', 200)
 					->header('Content-Type', 'text/plain');
 			} else {
