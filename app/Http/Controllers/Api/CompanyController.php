@@ -12,6 +12,14 @@ class CompanyController extends Controller
 {
     public function create(Request $request)
     {
+        $name = Company::where('name', '=', $request->name)->first();
+        $cnpj = Company::where('cnpj', '=', $request->cnpj)->first();
+
+        if ($name || $cnpj) {
+            return response('data_already_exists', 403)
+                ->header('Content-Type', 'text/plain');
+        }
+
         $company = Company::create([
             "name" => $request->input("name"),
             "cnpj" => $request->input("cnpj")
@@ -29,7 +37,12 @@ class CompanyController extends Controller
 
     public function update(Request $request)
     {
-        $company = Company::where('name', '=', $request->dataName)->first();
+        // if ($name || $cnpj) {
+        //     return response('data_already_exists', 403)
+        //         ->header('Content-Type', 'text/plain');
+        // }
+
+        $company = Company::findOrFail($request->id);
 
         $company->name = $request->input('name');
         $company->cnpj = $request->input('cnpj');
@@ -39,9 +52,9 @@ class CompanyController extends Controller
         }
     }
 
-    public function delete($dataName)
+    public function delete($id)
     {
-        $company = Company::where('name', '=', $dataName)->first();
+        $company = Company::findOrFail($id);
 
         if ($company) {
             $company->delete();
