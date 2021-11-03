@@ -6,25 +6,15 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateCompaniesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 40);
-            $table->string('cnpj', 40);
+            $table->string('name', 30);
+            $table->char('cnpj', 14);
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('companies');

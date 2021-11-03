@@ -6,25 +6,15 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateAuthsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('auths', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('user', 40);
-            $table->string('password', 40);
+            $table->string('userLogin', 30);
+            $table->string('userPassword', 30);
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('auths');
