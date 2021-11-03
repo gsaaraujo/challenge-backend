@@ -10,7 +10,7 @@ class Auth extends Model
   public $timestamps = false;
 
   protected $fillable = [
-    'user',
-    'password',
+    'userLogin',
+    'userPassword',
   ];
 }

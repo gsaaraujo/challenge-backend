@@ -9,7 +9,7 @@ use App\Http\Resources\Auth as AuthResource;
 
 class AuthController extends Controller
 {
-	public function create(Request $request)
+	public function authentication(Request $request)
 	{
 		try {
 			$userLogin = Auth::where('userLogin', $request->userLogin)->first();
