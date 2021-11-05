@@ -9,6 +9,8 @@ class Auth extends Model
 {
   public $timestamps = false;
 
+  protected $table = 'auth';
+
   protected $fillable = [
     'userLogin',
     'userPassword',

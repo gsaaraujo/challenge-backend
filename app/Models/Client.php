@@ -5,19 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Company extends Model
+class Client extends Model
 {
     public $timestamps = false;
 
-    protected $table = 'company';
+    protected $table = 'client';
 
     protected $fillable = [
         'name',
-        'cnpj',
     ];
 
-    public function systems()
+    public function datas()
     {
-        return $this->belongsToMany(System::class, 'company_system', 'id', 'idCompany');
+        return $this->hasMany(Data::class);
     }
 }

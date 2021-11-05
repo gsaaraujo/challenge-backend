@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Models\Company as Company;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Company as CompanyResource;
-
 
 class CompanyController extends Controller
 {
@@ -21,8 +19,8 @@ class CompanyController extends Controller
         }
 
         $company = Company::create([
-            "name" => $request->input("name"),
-            "cnpj" => $request->input("cnpj")
+            "name" => $request->name,
+            "cnpj" => $request->cnpj
         ]);
 
         return $company;
@@ -30,9 +28,9 @@ class CompanyController extends Controller
 
     public function read()
     {
-        $company = Company::paginate(10);
+        $company = Company::all();
 
-        return CompanyResource::collection($company);
+        return $company;
     }
 
     public function update(Request $request)
@@ -50,8 +48,8 @@ class CompanyController extends Controller
 
         $company = Company::findOrFail($request->id);
 
-        $company->name = $request->input('name');
-        $company->cnpj = $request->input('cnpj');
+        $company->name = $request->name;
+        $company->cnpj = $request->cnpj;
 
         if ($company) {
             $company->save();

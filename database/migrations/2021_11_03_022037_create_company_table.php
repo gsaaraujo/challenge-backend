@@ -5,11 +5,11 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCompaniesTable extends Migration
+class CreateCompanyTable extends Migration
 {
     public function up()
     {
-        Schema::create('companies', function (Blueprint $table) {
+        Schema::create('company', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 30);
             $table->char('cnpj', 14);
@@ -18,6 +18,6 @@ class CreateCompaniesTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('companies');
+        Schema::dropIfExists('company');
     }
 }

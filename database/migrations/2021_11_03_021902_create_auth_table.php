@@ -5,11 +5,11 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAuthsTable extends Migration
+class CreateAuthTable extends Migration
 {
     public function up()
     {
-        Schema::create('auths', function (Blueprint $table) {
+        Schema::create('auth', function (Blueprint $table) {
             $table->increments('id');
             $table->string('userLogin', 30);
             $table->string('userPassword', 30);
@@ -18,6 +18,6 @@ class CreateAuthsTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('auths');
+        Schema::dropIfExists('auth');
     }
 }
