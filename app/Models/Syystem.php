@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class System extends Model
+class Syystem extends Model
 {
     public $timestamps = false;
 
-    protected $table = 'system';
+    protected $table = 'syystem';
 
     protected $fillable = [
         'name',
@@ -17,6 +16,6 @@ class System extends Model
 
     public function companies()
     {
-        return $this->belongsToMany(Company::class, 'company_system', 'id', 'idSystem');
+        return $this->belongsToMany(Company::class);
     }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Company extends Model
@@ -16,8 +15,8 @@ class Company extends Model
         'cnpj',
     ];
 
-    public function systems()
+    public function syystems()
     {
-        return $this->belongsToMany(System::class, 'company_system', 'id', 'idCompany');
+        return $this->belongsToMany(Syystem::class);
     }
 }

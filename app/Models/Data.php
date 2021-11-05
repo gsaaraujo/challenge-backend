@@ -11,9 +11,9 @@ class Data extends Model
     protected $table = 'data';
 
     protected $fillable = [
-        'idCompany',
-        'idSystem',
-        'idClient',
+        'company_id',
+        'syystem_id',
+        'client_id',
         'label',
         'value',
         'module',
