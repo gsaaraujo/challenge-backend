@@ -18,4 +18,9 @@ class Syystem extends Model
     {
         return $this->belongsToMany(Company::class);
     }
+
+    public function data()
+    {
+        return $this->hasMany(Data::class);
+    }
 }

@@ -19,8 +19,23 @@ class Data extends Model
         'module',
     ];
 
-    public function clients()
+    public function client()
     {
         return $this->belongsTo(Client::class);
+    }
+
+    public function companysystem()
+    {
+        return $this->belongsTo(CompanySyystem::class);
+    }
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
+
+    public function syystem()
+    {
+        return $this->belongsTo(Syystem::class);
     }
 }

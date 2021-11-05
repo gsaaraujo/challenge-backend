@@ -19,4 +19,9 @@ class Company extends Model
     {
         return $this->belongsToMany(Syystem::class);
     }
+
+    public function data()
+    {
+        return $this->hasMany(Data::class);
+    }
 }

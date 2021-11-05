@@ -15,7 +15,7 @@ class Client extends Model
         'name',
     ];
 
-    public function datas()
+    public function data()
     {
         return $this->hasMany(Data::class);
     }

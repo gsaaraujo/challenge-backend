@@ -3,8 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class CompanySyystem extends Model
+class CompanySyystem extends Pivot
 {
     public $timestamps = false;
 
