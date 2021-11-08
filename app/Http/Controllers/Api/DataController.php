@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Data as DataResource;
 
 use App\Models\Data as Data;
 use App\Models\Client as Client;
@@ -15,35 +16,31 @@ class DataController extends Controller
 {
     public function create(Request $request)
     {
-        $client = Client::where('name', '=', $request->clientName)->first();
-        $syystem = Syystem::where('name', '=', $request->syystemName)->first();
-
-        $company_CompanySyystem = CompanySyystem::where('company_id', '=', $request->company_id)->first();
-        $syystem_CompanySyystem = CompanySyystem::where('syystem_id', '=', $syystem->id)->first();
+        $client = Client::where('name', '=', $request->input('client.name'))->first();
+        $syystem = Syystem::where('name', '=', $request->input('syystem.name'))->first();
+        $company = Company::where('name', '=', $request->input('company.name'))->first();
 
         if (!$client) {
-            $client = Client::create(["name" => $request->clientName]);
+            $client = Client::create(["name" => $request->input('client.name')]);
         }
 
         if (!$syystem) {
-            $syystem = Syystem::create(["name" => $request->syystemName]);
+            $syystem = Syystem::create(["name" => $request->input('syystem.name')]);
         }
 
-        if (!$company_CompanySyystem) {
-            $company_CompanySyystem = CompanySyystem::create([
-                "company_id" => $request->company_id,
-            ]);
-        }
+        $companySyystem = CompanySyystem::where('company_id', '=', $company->id)
+            ->where('syystem_id', '=', $syystem->id)->first();
 
-        if (!$syystem_CompanySyystem) {
-            $syystem_CompanySyystem = CompanySyystem::create([
+        if (!$companySyystem) {
+            $companySyystem = CompanySyystem::create([
+                "company_id" => $company->id,
                 "syystem_id" => $syystem->id,
             ]);
         }
 
         Data::create([
-            "company_id" => $company_CompanySyystem->company_id,
-            "syystem_id" => $syystem_CompanySyystem->syystem_id,
+            "company_id" => $companySyystem->company_id,
+            "syystem_id" => $companySyystem->syystem_id,
             "client_id" => $client->id,
             "label" => $request->label,
             "value" => $request->value,
@@ -53,6 +50,13 @@ class DataController extends Controller
 
     public function read()
     {
-        return Data::with(['company', 'syystem', 'client'])->get();
+        return Data::with(['company', 'syystem', 'client'])->get()->groupBy('client_id');
+    }
+
+    public function update(Request $request)
+    {
+        // $company = Data::where('company', '=', $request->input('company'))->first();
+
+        // return $company;
     }
 }
