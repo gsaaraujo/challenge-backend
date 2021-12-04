@@ -11,6 +11,7 @@ use App\Models\Client as Client;
 use App\Models\Company as Company;
 use App\Models\Syystem as Syystem;
 use App\Models\CompanySyystem as CompanySyystem;
+use App\Models\Last;
 
 class DataController extends Controller
 {
@@ -38,7 +39,7 @@ class DataController extends Controller
             ]);
         }
 
-        Data::create([
+        $data = Data::create([
             "company_id" => $companySyystem->company_id,
             "syystem_id" => $companySyystem->syystem_id,
             "client_id" => $client->id,
